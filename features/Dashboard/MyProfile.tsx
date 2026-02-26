@@ -122,7 +122,7 @@ const MyProfile = () => {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{user.firstName + " " + user.lastName}</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{user?.firstName + " " + user?.lastName}</h2>
               <p className="text-gray-600 dark:text-gray-400 mb-2">
                 {profile.title} at <span className="font-semibold">{profile.company}</span>
               </p>
@@ -146,7 +146,7 @@ const MyProfile = () => {
             </button>
           </div>
           <p className="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-line leading-relaxed">
-            {user.bio}
+            {user?.bio}
           </p>
         </div>
 
@@ -298,7 +298,7 @@ const MyProfile = () => {
               <Mail className="w-5 h-5 text-gray-400 mt-0.5" />
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Email</p>
-                <p className="text-sm text-gray-900 dark:text-white">{user.email}</p>
+                <p className="text-sm text-gray-900 dark:text-white">{user?.email}</p>
               </div>
             </div>
 
@@ -306,7 +306,7 @@ const MyProfile = () => {
               <Phone className="w-5 h-5 text-gray-400 mt-0.5" />
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Phone</p>
-                <p className="text-sm text-gray-900 dark:text-white">{user.phone}</p>
+                <p className="text-sm text-gray-900 dark:text-white">{user?.phone}</p>
               </div>
             </div>
 

@@ -14,7 +14,7 @@ const Settings = () => {
   const [activeTab, setActiveTab] = useState('profile');
   const { user, isAuthenticated, isLoading } = useAuth();
   const [uploading, setUploading] = useState(false);
-  const [preview, setPreview] = useState(user.profilePicture || "");
+  const [preview, setPreview] = useState(user?.profilePicture || "");
   console.log("User Value", user)
 
   const tabs = [
@@ -31,15 +31,15 @@ const Settings = () => {
   } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
-      firstName: user.firstName || "",
-      lastName: user.lastName || "",
-      email: user.email || "",
-      phone: user.phone || "",
-      bio: user.bio || "",
+      firstName: user?.firstName || "",
+      lastName: user?.lastName || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
+      bio: user?.bio || "",
       dateOfBirth: "",
-      gender: user.gender || "",
-      location: user.location || "",
-      profilePicture: user.profilePicture || "",
+      gender: user?.gender || "",
+      location: user?.location || "",
+      profilePicture: user?.profilePicture || "",
     },
   });
 
@@ -405,12 +405,12 @@ const Settings = () => {
                   </div>
                   <div className="text-right">
                     <p className="text-sm text-gray-900 dark:text-white flex items-center gap-2">
-                      {user.email}
-                      {user.emailVerified  ? <CheckCircle className="w-4 h-4 text-green-500" /> :
+                      {user?.email}
+                      {user?.emailVerified  ? <CheckCircle className="w-4 h-4 text-green-500" /> :
                       <XCircle className="w-4 h-4 text-red-500" />}
                     </p>
                       
-                    {user.emailVerified  ? (<p className="text-xs text-gray-500 dark:text-gray-400">
+                    {user?.emailVerified  ? (<p className="text-xs text-gray-500 dark:text-gray-400">
                       Your email address is verified
                     </p>) : (<p className="text-xs text-gray-500 dark:text-gray-400">
                       Your email address is not verified
@@ -425,7 +425,7 @@ const Settings = () => {
                     type="email"
                     placeholder="Enter your new email"
                     disabled
-                    value={user.email}
+                    value={user?.email}
                     className="w-full invalid:bg-gray-800 disabled:border-gray-200 disabled:bg-gray-50 disabled:text-gray-500 disabled:shadow-none dark:disabled:border-gray-700 dark:disabled:bg-gray-800/20 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-indigo-500 outline-none"
                   />
                 </div>

@@ -13,6 +13,8 @@ const MyApplications = () => {
 
   const getUserApplications = async () => {
     const token = localStorage.getItem('access_token');
+    if(!token)
+      return
     const res = await getApplications(token);
     console.log(res);
   }

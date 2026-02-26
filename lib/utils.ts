@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getInitials(firstName: string, lastName: string) {
+export function getInitials(firstName: string | undefined, lastName: string | undefined) {
   if (!firstName && !lastName) return "";
 
   const firstInitial = firstName?.trim()?.charAt(0)?.toUpperCase() || "";

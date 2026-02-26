@@ -308,7 +308,7 @@ const Step1 = ({ jobTitle, setJobTitle, employmentTypes, toggleEmploymentType, s
           </button>
         </div>
         <div className="flex flex-wrap gap-2">
-          {skills.map((skill) => (
+          {skills.map((skill: any) => (
             <span
               key={skill}
               className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-full text-sm border border-indigo-200 dark:border-indigo-800"

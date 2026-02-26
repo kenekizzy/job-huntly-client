@@ -5,11 +5,11 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 import { useAuthActions } from '@/features/Auth/hooks/useAuth';
 import { toast } from 'react-toastify';
 import { useToast } from '@/hooks/useToast';
-import { 
-  setAuthData, 
-  clearAuthData, 
-  getUserData, 
-  getAuthToken 
+import {
+  setAuthData,
+  clearAuthData,
+  getUserData,
+  getAuthToken
 } from '@/lib/auth-utils';
 import { useRouter } from 'next/navigation';
 
@@ -19,7 +19,22 @@ interface User {
   lastName: string;
   id: string;
   email: string;
-  // add other user properties
+  phone?: string;
+  gender?: string;
+  location?: string;
+  bio?: string;
+  profilePicture?: string;
+  resumeUrl?: string;
+  skills?: string[];
+  experience?: string;
+  education?: string;
+  preferredJobTypes?: string[];
+  preferredLocations?: string[];
+  isActive?: boolean;
+  emailVerified: boolean;
+  provider?: string;
+  providerId?: string;
+  lastLogin: Date;
 }
 
 interface Company {
@@ -76,17 +91,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { showSuccess, showError } = useToast();
   const router = useRouter();
 
-   useEffect(() => {
+  useEffect(() => {
     const token = getAuthToken();
     const userData = getUserData();
 
     if (token && userData) {
-       try {
+      try {
         setUser(userData);
-       } catch (error) {
+      } catch (error) {
         console.error('Error loading user data:', error);
         clearAuthData();
-       }
+      }
     }
     setIsLoading(false);
   }, []);
@@ -98,10 +113,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.log('Login response:', response);
       const userData = response?.data?.user;
 
-      if(response?.status !== 200) {
+      if (response?.status !== 200) {
         showError(response?.data?.message || 'Login failed');
         setIsLoading(false);
-        return {success: false}
+        return { success: false }
       }
 
       // Store auth data using utility functions
@@ -110,16 +125,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         response?.data?.refreshToken,
         userData
       );
-      
+
       showSuccess('Login successful!', `Welcome ${userData.firstName}!`);
       setUser(userData);
       setIsLoading(false);
-      return {success: true}
+      return { success: true }
     } catch (err) {
       console.error('Login error:', err);
       showError('Login failed. Please try again.');
       setIsLoading(false);
-      return {success: false}
+      return { success: false }
     }
   };
 
